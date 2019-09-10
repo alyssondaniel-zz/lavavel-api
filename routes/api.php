@@ -34,3 +34,5 @@ Route::get('comments/{comment}', 'CommentController@show');
 Route::post('comments', 'CommentController@store');
 Route::put('comments/{comment}', 'CommentController@update');
 Route::delete('comments/{comment}', 'CommentController@delete');
+
+Route::post('register', 'Auth\RegisterController@register');

@@ -36,3 +36,4 @@ Route::put('comments/{comment}', 'CommentController@update');
 Route::delete('comments/{comment}', 'CommentController@delete');
 
 Route::post('register', 'Auth\RegisterController@register');
+Route::post('login', 'Auth\LoginController@login');

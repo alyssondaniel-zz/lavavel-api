@@ -9,6 +9,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Ticket::class, function (Faker $faker) {
     return [
+        'status' => 'opened',
         'title' => $faker->sentence,
         'created_by' => User::inRandomOrder()->first()->id,
         'departament_id' => Departament::inRandomOrder()->first()->id,

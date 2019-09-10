@@ -17,24 +17,28 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('departaments', 'DepartamentController@index');
-Route::get('departaments/{departament}', 'DepartamentController@show');
-Route::post('departaments', 'DepartamentController@store');
-Route::put('departaments/{departament}', 'DepartamentController@update');
-Route::delete('departaments/{departament}', 'DepartamentController@delete');
+Route::group(['middleware' => 'auth:api'], function() {
+  Route::get('departaments', 'DepartamentController@index');
+  Route::get('departaments/{departament}', 'DepartamentController@show');
+  Route::post('departaments', 'DepartamentController@store');
+  Route::put('departaments/{departament}', 'DepartamentController@update');
+  Route::delete('departaments/{departament}', 'DepartamentController@delete');
 
-Route::get('tickets', 'TicketController@index');
-Route::get('tickets/{ticket}', 'TicketController@show');
-Route::post('tickets', 'TicketController@store');
-Route::put('tickets/{ticket}', 'TicketController@update');
-Route::delete('tickets/{ticket}', 'TicketController@delete');
+  Route::get('tickets', 'TicketController@index');
+  Route::get('tickets/{ticket}', 'TicketController@show');
+  Route::post('tickets', 'TicketController@store');
+  Route::put('tickets/{ticket}', 'TicketController@update');
+  Route::delete('tickets/{ticket}', 'TicketController@delete');
 
-Route::get('comments', 'CommentController@index');
-Route::get('comments/{comment}', 'CommentController@show');
-Route::post('comments', 'CommentController@store');
-Route::put('comments/{comment}', 'CommentController@update');
-Route::delete('comments/{comment}', 'CommentController@delete');
+  Route::get('comments', 'CommentController@index');
+  Route::get('comments/{comment}', 'CommentController@show');
+  Route::post('comments', 'CommentController@store');
+  Route::put('comments/{comment}', 'CommentController@update');
+  Route::delete('comments/{comment}', 'CommentController@delete');
+
+  Route::post('logout', 'Auth\LoginController@logout');
+});
 
 Route::post('register', 'Auth\RegisterController@register');
+Route::get('login', 'Auth\LoginController@index');
 Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout');
